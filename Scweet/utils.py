@@ -16,11 +16,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from . import const
+# from . import const
 import urllib
 
-from .const import get_username, get_password, get_email
+from const import get_username, get_password, get_email
 
+# from const import get_username, get_password, get_email
 
 # current_dir = pathlib.Path(__file__).parent.absolute()
 
@@ -281,7 +282,8 @@ def keep_scroling(driver, data, writer, tweet_ids, scrolling, tweet_parsed, limi
                     data.append(tweet)
                     last_date = str(tweet[2])
                     print("Tweet made at: " + str(last_date) + " is found.")
-                    writer.writerow(tweet)
+                    if writer:
+                        writer.writerow(tweet)
                     tweet_parsed += 1
                     if tweet_parsed >= limit:
                         break
