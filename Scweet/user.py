@@ -6,6 +6,7 @@ import pandas as pd
 import json
 import csv
 import datetime
+from dateutil.parser import parse
 from utils import init_driver, get_last_date_from_csv, log_search_page, keep_scroling, dowload_images
 
 
@@ -175,6 +176,11 @@ def get_users_tweets(users, driver=None, headless=True, interval=5, since=None, 
             writer = None
             driver, data, writer, tweet_ids, scrolling, tweet_parsed, scroll, last_position = \
                 keep_scroling(driver, data, writer, tweet_ids, scrolling, tweet_parsed, limit, scroll, last_position)
+            # judge while the date is smaller than the since date
+            earliest_date =  min(pd.to_datetime(pd.DataFrame(data).iloc[:,2])).timestamp()
+            since_timestamp = parse(since).timestamp()
+            if earliest_date <= since_timestamp:
+                break
 
     data = pd.DataFrame(data, columns=['UserScreenName', 'UserName', 'Timestamp', 'Text', 'Embedded_text', 'Emojis',
                                        'Comments', 'Likes', 'Retweets', 'Image link', 'Tweet URL'])
@@ -186,4 +192,5 @@ def hasNumbers(inputString):
 
 
 if __name__ == "__main__":
-    get_users_tweets('WhiteWhaleTerra', headless=False)
+    data = get_users_tweets('WhiteWhaleTerra', headless=False,since="2022-10-10")
+    print(data)
