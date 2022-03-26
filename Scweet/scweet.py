@@ -6,7 +6,7 @@ from time import sleep
 import random
 import pandas as pd
 
-from utils import init_driver, get_last_date_from_csv, log_search_page, keep_scroling, dowload_images
+from .utils import init_driver, get_last_date_from_csv, log_search_page, keep_scroling, dowload_images
 
 
 
