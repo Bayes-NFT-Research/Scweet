@@ -7,7 +7,7 @@ import json
 import csv
 import datetime
 from dateutil.parser import parse
-from utils import init_driver, get_last_date_from_csv, log_search_page, keep_scroling, dowload_images
+from .utils import init_driver, get_last_date_from_csv, log_search_page, keep_scroling, dowload_images
 
 
 def get_user_information(users, driver=None, headless=True):
