@@ -19,7 +19,7 @@ from selenium.webdriver.common.by import By
 # from . import const
 import urllib
 
-from const import get_username, get_password, get_email
+from .const import get_username, get_password, get_email
 
 # from const import get_username, get_password, get_email
 
